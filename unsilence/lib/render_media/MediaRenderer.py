@@ -157,8 +157,10 @@ class MediaRenderer:
             "ffmpeg",
             "-f", "concat",
             "-safe", "0",
+            "-vsync", "0", "-hwaccel", "cuvid", "-c:v", "h264_cuvid",
             "-i", f"{concat_file.as_posix()}",
             "-c", "copy",
+            "-c:v", "h264_nvenc", "-b:v", "5M",
             "-y",
             "-loglevel", "verbose",
             f"{output_file.as_posix()}"
