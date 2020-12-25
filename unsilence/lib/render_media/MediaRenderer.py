@@ -155,12 +155,13 @@ class MediaRenderer:
 
         command = [
             "ffmpeg",
-            "-hwaccel", "cuvid",
+            "-hwaccel", "cuda",
             "-f", "concat",
             "-safe", "0",
             "-i", f"{concat_file.as_posix()}",
             "-c", "copy",
             "-c:v", "h264_nvenc",
+            "-allow_sw", "1",
             "-y",
             "-loglevel", "verbose",
             f"{output_file.as_posix()}"

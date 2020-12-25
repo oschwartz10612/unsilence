@@ -111,10 +111,12 @@ class RenderIntervalThread(threading.Thread):
         """
         command = [
             "ffmpeg",
-            "-hwaccel", "cuvid",
+            "-hwaccel", "cuda",
             "-ss", f"{interval.start}",
             "-to", f"{interval.end}",
             "-i", f"{self.__input_file}",
+            "-c:v", "h264_nvenc",
+            "-allow_sw", "1",
             "-vsync", "1",
             "-async", "1",
             "-safe", "0",
